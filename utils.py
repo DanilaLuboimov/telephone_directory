@@ -26,11 +26,11 @@ def gen_phone(optional: str = "w") -> str:
 
 def create_telephone_directory() -> None:
     """
-    Создает json-файл для хранения записей в справочнике.
+    Создает файл для хранения записей в справочнике.
 
     :return: None
     """
-    with open("telephone directory.json", "w", encoding="utf-8") as file:
+    with open("telephone directory.txt", "w", encoding="utf-8") as file:
         data: list = []
         json.dump(data, file, indent=4, ensure_ascii=False)
 
@@ -38,7 +38,7 @@ def create_telephone_directory() -> None:
 def response_json(data: list, limit: int, page: int, total_results: int,
                   total_page: int) -> str:
     """
-    Возвращает фрагмент json-файла.
+    Возвращает фрагмент файла.
 
     :param data: Массив данных.
     :param limit: Максимум записей во фрагменте.
@@ -67,7 +67,7 @@ def check_regex_phone(phone: str) -> bool:
 
 def serializer_search_param(param: str) -> [str | None]:
     """
-    Преобразует ввод пользователя под параметры json-файла
+    Преобразует ввод пользователя под параметры файла,
     и проверяет валидность ввода.
 
     :param param: Параметр для поиска записи.
@@ -93,7 +93,7 @@ def serializer_search_param(param: str) -> [str | None]:
 
 def serializer_param_directory(param: str) -> str:
     """
-    Преобразует параметры json-файла для пользователя.
+    Преобразует параметры файла для пользователя.
 
     :param param: Параметр записи.
     :return: str

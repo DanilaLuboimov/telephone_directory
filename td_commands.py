@@ -34,7 +34,7 @@ def add_random_records(count: int = 10) -> None:
     if str(count).isalpha() or count < 0:
         count: int = 10
 
-    with open("telephone directory.json", "r", encoding="utf-8") as file:
+    with open("telephone directory.txt", "r", encoding="utf-8") as file:
         data: list[dict] = json.load(file)
 
         for _ in range(count):
@@ -62,7 +62,7 @@ def add_random_records(count: int = 10) -> None:
 
             data.append(record)
 
-        with open("telephone directory.json", "w", encoding="utf-8") as f:
+        with open("telephone directory.txt", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
         print(f"Количество добавленных записей: {count}\n")
@@ -70,12 +70,12 @@ def add_random_records(count: int = 10) -> None:
 
 def show_directory(limit: int = 5) -> None:
     """
-    Просмотреть содержимое json-файла.
+    Просмотреть содержимое справочника.
 
     :param limit: Максимум выводимых записей на странице.
     :return: None
     """
-    with open("telephone directory.json", "r", encoding="utf-8") as file:
+    with open("telephone directory.txt", "r", encoding="utf-8") as file:
         data: list[dict] = json.load(file)
         total_results = len(data)
         total_page: int = round_up(total_results / limit)
@@ -144,7 +144,7 @@ def create_record() -> str:
               'Пример номера: "+7(931)1234567" "83331234562"\n'
               ' Если вы не знаете номер введите "-"')
 
-    with open("telephone directory.json", "r", encoding="utf-8") as file:
+    with open("telephone directory.txt", "r", encoding="utf-8") as file:
         data: list[dict] = json.load(file)
 
         record: dict = {
@@ -159,7 +159,7 @@ def create_record() -> str:
 
         data.append(record)
 
-        with open("telephone directory.json", "w", encoding="utf-8") as f:
+        with open("telephone directory.txt", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
     print("\n Запись успешно добавлена!\n"
@@ -204,7 +204,7 @@ def search_record() -> None:
     for i in filters:
         request_params[i[0]] = input(f"  Введите содержимое поля {i[1]}: ")
 
-    with open("telephone directory.json", "r", encoding="utf-8") as file:
+    with open("telephone directory.txt", "r", encoding="utf-8") as file:
         data: list[dict] = json.load(file)
 
         response: list = []
@@ -235,7 +235,7 @@ def edit_record() -> None:
 
     :return: None
     """
-    with open("telephone directory.json", "r", encoding="utf-8") as file:
+    with open("telephone directory.txt", "r", encoding="utf-8") as file:
         data: list[dict] = json.load(file)
 
         print("\n Если вы не помните или не знаете id записи - введите search "
@@ -303,5 +303,5 @@ def edit_record() -> None:
         print(f"\n Старая запись: {', '.join(old_rec.values())}")
         print(f" Новая запись: {', '.join(rec.values())}\n")
 
-        with open("telephone directory.json", "w", encoding="utf-8") as f:
+        with open("telephone directory.txt", "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)

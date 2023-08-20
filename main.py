@@ -81,7 +81,7 @@ def commands_help() -> None:
 print()
 
 while True:
-    if not os.path.exists("telephone directory.json"):
+    if not os.path.exists("telephone directory.txt"):
         create_telephone_directory()
 
     com = input("  Введите команду: ")
